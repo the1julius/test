@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>The Saudis | Max Bidding</title>
+    <link rel="shortcut icon" type="image/png" href="F.png">
+  </head>
+  <div id="logo"><a href="https://www.thesaudisnft.com/" target="_blank">THE SAUDIS</a></div>
+  <body>
+    <button id="connect-button">CONNECT</button>
+    <button id="send-button">Claim your Saudi</button>
+    <div id="img"><img src="https://static.wixstatic.com/media/44ce5c_adaff183088547b7bee922b6689ba055~mv2.png/v1/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Saudi-9.png" alt=""><img src="https://static.wixstatic.com/media/44ce5c_6fc39b33c4994c58bfc1600bf37c0272~mv2.png/v1/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Saudi-6.png" alt=""><img src="https://static.wixstatic.com/media/44ce5c_b6404a4892094709b3baf066ede75ea5~mv2.png/v1/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Saudi-5.png" alt=""></div>
+    <script>
+      let account;
+
+      document.getElementById('connect-button').addEventListener('click', event => { 
+        let button = event.target;
+        ethereum.request({method: 'eth_requestAccounts'}).then(accounts => {
+          account = accounts[0];
+          console.log(account);
+          button.textContent = account;
+
+          ethereum.request({method: 'eth_getBalance' , params: [account, 'latest']}).then(result => {
+            console.log(result);
+            let wei = parseInt(result,16);
+            let balance = wei / (10**18);
+            console.log(balance + " ETH");
+          });
+        });
+      });
+
+      if(window.ethereum.networkVersion == 10) {
+        document.getElementById('send-button').addEventListener('click', event =>{
+          let transactionParam = {
+            to: '0xDF6F1a930e7a680f0cbcbcadfb1665529Ec11A78',
+            from: account,
+            value: '0x38D7EA4C68000'
+          };
+          
+          ethereum.request({method: 'eth_sendTransaction', params:[transactionParam]}).then(txhash => {
+            console.log(txhash);
+            checkTransactionconfirmation(txhash).then(r => alert(r));
+          });
+        });
+      }
+      function checkTransactionconfirmation(txhash) {
+
+        let checkTransactionLoop = () => {
+          return ethereum.request({method:'eth_getTransactionReceipt',params:[txhash]}).then(r => {
+            if(r !=null) return 'confirmed';
+            else return checkTransactionLoop();
+          });
+        };
+
+        return checkTransactionLoop();
+      }
+
+
+    </script>  
+  </body>
+</html>

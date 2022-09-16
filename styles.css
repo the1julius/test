@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background: #FFE9B0;
+  background-image: url("https://static.wixstatic.com/media/44ce5c_d7cb427cfeb74fa386caf6eb7a7fa8a1~mv2.png/v1/fill/w_1303,h_600,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/Sand%20Dunes.png");
+  overflow: hidden;
+  display: flex;
+  color:white;
+  font-family: 'Roboto', sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  background: #000;
+  border: 0;
+  color: #fff;
+  padding: 1.5%;
+  border-radius: 15px;
+  transition: 0.4s ease;
+  font-size: 80%;
+  background-size: 40px;
+  background-position: 20px;
+  cursor: pointer;
+  box-shadow: #201F1F;
+  margin-top: auto;
+  margin-top: 8%;
+}
+button:hover {
+  background: #201F1F;
+
+}
+#send-button {
+  background: #000;
+  border: 100;
+  color: white;
+  padding: 1.5%;
+  border-radius: 15px;
+  transition: 0.4s ease;
+  font-size: 90%;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 8%;
+}
+#send-button:hover {
+  background: #201F1F;
+}
+#logo {
+  text-decoration: none;
+  font-size: larger;
+  color: black;
+  font-size: 200%;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: auto;
+}
+#logo a{
+  text-decoration: none;
+  color: #000;
+}
